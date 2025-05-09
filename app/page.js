@@ -9,33 +9,31 @@ import styles from './page.module.css';
 const RECAPTCHA_SITE_KEY = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY || '6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI';
 
 export default function Home() {
-  const nameInputRef = useRef();
   const emailInputRef = useRef();
-  const phoneInputRef = useRef();
+  const passwordInputRef = useRef();
   const recaptchaRef = useRef();
   
   const [isLoading, setIsLoading] = useState(false);
   const [formStatus, setFormStatus] = useState({ type: '', message: '' });
-  const [isFormValid, setIsFormValid] = useState(false);
   const [validationState, setValidationState] = useState({
-    name: false,
     email: false,
-    phone: false
+    password: false
   });
   const [isCaptchaVerified, setIsCaptchaVerified] = useState(false);
   const [formData, setFormData] = useState({
-    name: '',
     email: '',
-    phone: '',
+    password: '',
   });
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState('');
-  const [success, setSuccess] = useState(false);
 
   useEffect(() => {
     // Set CSRF token on component mount
-    const token = crypto.randomBytes(32).toString('hex');
-    document.cookie = `csrf-token=${token}; path=/; SameSite=Strict`;
+    const generateToken = async () => {
+      const array = new Uint8Array(32);
+      crypto.getRandomValues(array);
+      const token = Array.from(array, byte => byte.toString(16).padStart(2, '0')).join('');
+      document.cookie = `csrf-token=${token}; path=/; SameSite=Strict`;
+    };
+    generateToken();
   }, []);
 
   const handleValidation = (field) => (isValid) => {
@@ -54,19 +52,17 @@ export default function Home() {
   };
 
   const resetForm = () => {
-    nameInputRef.current.value = '';
     emailInputRef.current.value = '';
-    phoneInputRef.current.value = '';
-    setValidationState({ name: false, email: false, phone: false });
+    passwordInputRef.current.value = '';
+    setValidationState({ email: false, password: false });
     recaptchaRef.current?.reset();
     setIsCaptchaVerified(false);
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setLoading(true);
-    setError('');
-    setSuccess(false);
+    setIsLoading(true);
+    setFormStatus({ type: '', message: '' });
 
     try {
       const token = await recaptchaRef.current.executeAsync();
@@ -75,7 +71,7 @@ export default function Home() {
         .find(row => row.startsWith('csrf-token='))
         ?.split('=')[1];
 
-      const response = await fetch('/api/contact', {
+      const response = await fetch('/api/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -90,41 +86,30 @@ export default function Home() {
       const data = await response.json();
 
       if (!response.ok) {
-        throw new Error(data.error || 'Failed to submit form');
+        throw new Error(data.error || 'Failed to login');
       }
 
       setFormStatus({
         type: 'success',
-        message: 'Form submitted successfully!'
+        message: 'Login successful!'
       });
 
-      resetForm();
+      // TODO: Handle successful login (e.g., redirect to dashboard)
+      // window.location.href = '/dashboard';
     } catch (error) {
       setFormStatus({
         type: 'error',
         message: error.message || 'Something went wrong. Please try again.'
       });
     } finally {
-      setLoading(false);
+      setIsLoading(false);
     }
   };
 
   return (
     <div className={styles.container}>
       <form onSubmit={handleSubmit} className={styles.form}>
-        <h1>Contact Us</h1>
-        
-        <Input
-          ref={nameInputRef}
-          label="Name"
-          input={{
-            id: 'name',
-            type: 'text',
-            required: true,
-            placeholder: 'Enter your name'
-          }}
-          onValidation={handleValidation('name')}
-        />
+        <h1>Login</h1>
         
         <Input
           ref={emailInputRef}
@@ -139,15 +124,15 @@ export default function Home() {
         />
         
         <Input
-          ref={phoneInputRef}
-          label="Phone Number"
+          ref={passwordInputRef}
+          label="Password"
           input={{
-            id: 'phone',
-            type: 'tel',
+            id: 'password',
+            type: 'password',
             required: true,
-            placeholder: 'Enter your phone number'
+            placeholder: 'Enter your password'
           }}
-          onValidation={handleValidation('phone')}
+          onValidation={handleValidation('password')}
         />
 
         <div className={styles.captchaContainer}>
@@ -169,7 +154,7 @@ export default function Home() {
           disabled={isLoading || !validateForm()}
           className={styles.submitButton}
         >
-          {isLoading ? 'Submitting...' : 'Submit'}
+          {isLoading ? 'Logging in...' : 'Login'}
         </button>
       </form>
     </div>

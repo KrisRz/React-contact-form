@@ -1,0 +1,110 @@
+/*!***************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[13].oneOf[5].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[13].oneOf[5].use[3]!./app/components/Input.module.css ***!
+  \***************************************************************************************************************************************************************************************************************************************************************************/
+.Input_input__lV8tu {
+  margin: 1rem 0;
+}
+
+.Input_input__lV8tu label {
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+  display: block;
+}
+
+.Input_input__lV8tu input {
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  font: inherit;
+  border-radius: 4px;
+}
+
+.Input_input__lV8tu input:focus {
+  outline: none;
+  border-color: #4f005f;
+  background: #f6dbfc;
+}
+
+.Input_input__lV8tu input.Input_error__WeifQ {
+  border-color: #ff0000;
+  background: #ffebee;
+}
+
+.Input_errorMessage__KFky0 {
+  color: #ff0000;
+  font-size: 0.8rem;
+  margin-top: 0.25rem;
+  display: block;
+} 
+/*!***************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[13].oneOf[5].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[13].oneOf[5].use[3]!./app/page.module.css ***!
+  \***************************************************************************************************************************************************************************************************************************************************************/
+.page_container__jZF7q {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+  background: #f5f5f5;
+}
+
+.page_form__NxPAx {
+  background: white;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 500px;
+}
+
+.page_form__NxPAx h1 {
+  margin-bottom: 2rem;
+  color: #333;
+  text-align: center;
+}
+
+.page_captchaContainer__TFGK6 {
+  margin: 1rem 0;
+  display: flex;
+  justify-content: center;
+}
+
+.page_submitButton__NQB5P {
+  width: 100%;
+  padding: 0.75rem;
+  background: #4f005f;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.page_submitButton__NQB5P:hover:not(:disabled) {
+  background: #741188;
+}
+
+.page_submitButton__NQB5P:disabled {
+  background: #cccccc;
+  cursor: not-allowed;
+}
+
+.page_status__e5ASC {
+  margin: 1rem 0;
+  padding: 0.75rem;
+  border-radius: 4px;
+  text-align: center;
+}
+
+.page_success__r1r7Y {
+  background: #e8f5e9;
+  color: #2e7d32;
+  border: 1px solid #a5d6a7;
+}
+
+.page_error__JBrsB {
+  background: #ffebee;
+  color: #c62828;
+  border: 1px solid #ef9a9a;
+} 
