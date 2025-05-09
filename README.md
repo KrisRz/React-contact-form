@@ -1,6 +1,6 @@
-# Next.js Contact Form
+# Next.js Login Page with reCAPTCHA
 
-A modern, secure contact form built with Next.js 15 and React 18. Perfect for portfolio projects and production use.
+A secure login page built with Next.js 15 and React 18, featuring reCAPTCHA integration and form validation.
 
 ## Features
 
@@ -10,7 +10,6 @@ A modern, secure contact form built with Next.js 15 and React 18. Perfect for po
 - ✅ Real-time form validation
 - 🎨 Modern UI with CSS Modules
 - ⚡ API route with rate limiting
-- 📧 Ready for email service integration
 - 🔄 Loading states and error handling
 - 📱 Responsive design
 
@@ -32,12 +31,6 @@ npm install
 # reCAPTCHA
 NEXT_PUBLIC_RECAPTCHA_SITE_KEY=your_site_key_here
 RECAPTCHA_SECRET_KEY=your_secret_key_here
-
-# Email (for future implementation)
-EMAIL_SERVICE=gmail
-EMAIL_USER=your_email@gmail.com
-EMAIL_PASS=your_app_password
-EMAIL_TO=your_email@gmail.com
 ```
 
 4. Get your reCAPTCHA keys:
@@ -58,10 +51,10 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 The project is ready for:
 
-1. Email Service Integration:
-   - SendGrid
-   - Nodemailer
-   - AWS SES
+1. Authentication Integration:
+   - NextAuth.js
+   - JWT
+   - OAuth providers
 
 2. Database Integration:
    - MongoDB
@@ -69,10 +62,10 @@ The project is ready for:
    - MySQL
 
 3. Additional Features:
-   - File uploads
-   - Custom form fields
-   - Analytics integration
-   - Admin dashboard
+   - Password reset functionality
+   - Remember me option
+   - Two-factor authentication
+   - User profile management
 
 ## Production Deployment
 
