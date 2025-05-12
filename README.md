@@ -1,3 +1,5 @@
+This project is for demonstration purposes only. For code access or questions, please contact me.
+
 # Next.js Login Page with reCAPTCHA
 
 A secure login page built with Next.js 15 and React 18, featuring reCAPTCHA integration and form validation.
